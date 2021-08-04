@@ -30,4 +30,12 @@ app.post('/account',(req,res)=>{
     return res.status(201).send()
 })
 
+app.get('/statement/:cpf', (req, res) => {
+    //get cpf from params
+    const { cpf } = req.params
+    //find and return cpf from costumers array
+    const costumer = costumers.find(costumer => costumer.cpf === cpf)
+    return res.json(costumer.statements)
+})
+
 app.listen(3333)
