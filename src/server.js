@@ -30,11 +30,15 @@ app.post('/account',(req,res)=>{
     return res.status(201).send()
 })
 
-app.get('/statement/:cpf', (req, res) => {
+app.get('/statement/', (req, res) => {
     //get cpf from params
-    const { cpf } = req.params
+    const { cpf } = req.headers
     //find and return cpf from costumers array
     const costumer = costumers.find(costumer => costumer.cpf === cpf)
+
+    if(!costumer){
+        return res.status(400).json({error:"Costumer not found"})
+    }
     return res.json(costumer.statements)
 })
 
