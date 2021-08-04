@@ -9,14 +9,21 @@ const costumers = []
 
 app.post('/account',(req,res)=>{
     const { cpf, name } = req.body
-    const id = uuidv4()
-    console.log(id)
+
+    //find in arrays of costumers have same cpf
+    const customerAlreadyExists = costumers.some(
+        (customer) => customer.cpf === cpf)
+    
+        //if customer already exists, show message and error
+    if(customerAlreadyExists){
+        return res.status(400).json({error:"customer already exists!!!"})
+    }
 
     //this will be save data from body
     costumers.push({
         cpf,
         name,
-        id,
+        id:uuidv4(),
         statements:[]
     })
 
