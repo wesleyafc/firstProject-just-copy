@@ -59,4 +59,20 @@ app.get('/statement', verifyAccountExist, (req, res) => {
     return res.json(customer.statement)
 })
 
+app.post("/deposit", verifyAccountExist, (req, res) => {
+    const { description, amount } = req.body
+    const { customer } = req
+    const statementOperation = {
+        id: uuidv4(),
+        description,
+        amount,
+        created_at: new Date(),
+        type: "credit"
+    }
+
+    customer.statement.push(statementOperation)
+
+    return res.status(201).json({ customer })
+})
+
 app.listen(3333)
