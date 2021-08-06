@@ -87,7 +87,7 @@ app.post("/deposit", verifyAccountExist, (req, res) => {
 })
 
 app.post("/withdraw", verifyAccountExist, (req, res) => {
-    const { amount } = req.body
+    const { amount, id, description } = req.body
     const { customer } = req
 
     const balance = getBalance(customer.statement)
@@ -96,6 +96,8 @@ app.post("/withdraw", verifyAccountExist, (req, res) => {
     }
 
     const statementOperation = {
+        id: uuidv4(),
+        description,
         amount,
         created_at: new Date(),
         type: "debit"
