@@ -6,9 +6,9 @@
 - [x] fetch the client bank statement
 - [x] make money deposit
 - [x] withdraw money
-- [ ] fetch the client bank statement by date
-- [ ] update data account client
-- [ ] get data client
+- [x] fetch the client bank statement by date
+- [x] update data account client
+- [x] get data client
 - [ ] delete account client
 
 
