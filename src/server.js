@@ -134,6 +134,12 @@ app.get("/account", verifyAccountExist, (req, res) => {
     return res.json(customer)
 })
 
+app.delete("account", verifyAccountExist, (req, res) => {
+    const customer = req
+    customer.splice(customer, 1)
+    return res.status(200).json(customer)
+})
+
 
 
 app.listen(3333)
